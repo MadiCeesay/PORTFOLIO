@@ -3,9 +3,9 @@ test('home, assets, navigation and project routes',async({page,request})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await expect(page.getByRole('heading',{level:1})).toBeVisible();
  await expect.poll(()=>page.locator('.portrait-frame img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
  expect((await request.get('/Madi_Ceesay_CV.pdf')).status()).toBe(200);
- await page.getByRole('link',{name:'View Case Study'}).first().click();await expect(page).toHaveURL(/projects\/amc-gambia/);await expect(page.getByRole('heading',{level:1})).toHaveText('AMC Gambia');
- await page.reload();await expect(page.getByRole('heading',{level:1})).toHaveText('AMC Gambia');
- for(const slug of ['car-rental-system','floodwatch-gambia','lifelink','fincore','skilllink']){await page.goto(`/projects/${slug}`);await expect(page.getByRole('heading',{level:1})).toBeVisible()}
+ await page.getByRole('link',{name:'View Case Study'}).first().click();await expect(page).toHaveURL(/projects\/lifelink/);await expect(page.getByRole('heading',{level:1})).toHaveText('LifeLink');
+ await page.reload();await expect(page.getByRole('heading',{level:1})).toHaveText('LifeLink');
+ for(const slug of ['amc-gambia','car-rental-system','floodwatch-gambia','fincore','skilllink']){await page.goto(`/projects/${slug}`);await expect(page.getByRole('heading',{level:1})).toBeVisible()}
  await page.goto('/missing');await expect(page.getByText('A little off the path.')).toBeVisible();expect(errors).toEqual([])
 })
 test('responsive layouts and mobile keyboard navigation',async({page})=>{

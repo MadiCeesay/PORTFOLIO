@@ -1,126 +1,112 @@
+// Project content. `featured` projects get a full case-study card on the home page, in this order;
+// the rest appear under "Other projects". `live` and `code` add the Live / Code buttons.
 export const projects = [
   {
-    "slug": "amc-gambia",
-    "name": "AMC Gambia",
-    "category": "Real estate platform",
-    "number": "01",
-    "live": "https://amc-gambia.vercel.app/",
-    "image": "/images/amc-gambia.png",
-    "featured": true,
-    "stack": [
-      "React",
-      "Tailwind CSS"
+    slug: 'lifelink',
+    name: 'LifeLink',
+    category: 'Emergency blood donor mobile app',
+    number: '01',
+    featured: true,
+    platform: 'mobile',
+    live: 'https://lifelink-gm.vercel.app',
+    code: 'https://github.com/MadiCeesay/LifeLink',
+    image: '/images/projects/lifelink-app.png',
+    imageAlt: 'Three LifeLink screens: donor home, an urgent O-negative blood alert, and the hospital’s live request status',
+    stack: ['React Native (Expo)', 'TypeScript', 'Node.js', 'Express', 'MongoDB Atlas', 'JWT', 'Push notifications', 'Render', 'Vercel'],
+    summary: 'A mobile app that alerts nearby verified blood donors the moment a hospital in The Gambia needs their blood type — and lets them say yes in one tap.',
+    role: 'I designed and built LifeLink end to end: the Expo mobile app, the Node.js and Express API, the donor-matching logic and the deployment. The idea came from a UTG student urgently asking for blood on WhatsApp, with only a shared list of donors’ names and phone numbers to rely on.',
+    sections: [
+      { title: 'The problem', text: 'Urgent blood requests in The Gambia often travel as WhatsApp messages and shared lists of donors’ names, phone numbers and blood types. It is slow, it exposes donors’ personal details, and hospitals cannot see who is actually on the way.' },
+      { title: 'How it works', text: 'A verified hospital posts a request — blood type, units and urgency — in about 30 seconds. LifeLink finds eligible donors of that blood type nearby and alerts them. A donor answers three quick eligibility questions and taps “I can come”. The hospital sees live counts of who was alerted, who is coming and how many units have arrived, and confirms each donation.' },
+      { title: 'Privacy by design', text: 'There is no public donor list. Exact locations are never shown, and a hospital only sees a donor’s contact details after that donor accepts. Blood types are confirmed in person by a facility, which scans the donor’s QR card, and donors are paused from matching for 56 days after giving blood.' },
+      { title: 'Engineering highlights', text: 'A progressive search widens automatically from 5 to 10, 20 and 40 km when not enough donors respond, so staff never have to chase it during an emergency. Requests, responses and donations use MongoDB transactions and idempotent broadcasts. The API has role-based access for donors, facility staff and administrators, phone-number sign-up, an audit log, and push alerts for both the web app and the store builds.' },
+      { title: 'Result', text: 'LifeLink is live: the API runs on Render and the app on Vercel, and it installs to a phone’s home screen. I tested the full emergency flow on the live system — a hospital posts a request, a nearby donor is alerted and accepts, and the donation is confirmed until the request is fulfilled.' },
     ],
-    "summary": "A real estate platform that helps people browse properties by location, type, and price. The deployed interface combines buy/rent filters with image-led listings and property navigation.",
-    "role": "The supplied CV describes designing and building a responsive real estate platform, including property browsing, listing details, and separate admin and user experiences. Confirmation that AMC is the same deployment is still needed.",
-    "sections": [
-      {
-        "title": "The interface",
-        "text": "The real estate work described in my CV brings search, filtering, and image-rich listings together, with a clear path from browsing to property details."
-      },
-      {
-        "title": "Design and implementation",
-        "text": "The documented contribution includes responsive layouts, an admin dashboard for managing listings, role-based views, sign-in, and image uploads."
-      }
-    ],
-    "note": "AMCâ€™s relationship to the real estate project in the CV, complete stack, and individual project contribution need confirmation."
+    features: ['Phone-number sign-up for donors', 'Verified hospitals and staff permissions', 'Blood-type matching by distance', 'Automatic 5 → 40 km search widening', 'One-tap response with eligibility check', 'Directions and call button for donors', 'QR donor cards for in-person verification', 'Live request status for hospitals', 'Push alerts for donors and staff', 'Admin approval and audit log'],
   },
   {
-    "slug": "car-rental-system",
-    "name": "Car Rental System",
-    "category": "Car rental web interface",
-    "number": "02",
-    "live": "https://car-rental-system-eosin.vercel.app/",
-    "image": "/images/car-rental-system.png",
-    "featured": true,
-    "stack": [
-      "HTML",
-      "CSS"
+    slug: 'skilllink',
+    name: 'SkillLink',
+    category: 'Local services marketplace · Final-year project',
+    number: '02',
+    featured: true,
+    platform: 'web',
+    live: 'https://skilllink-gm.vercel.app',
+    code: 'https://github.com/MadiCeesay/Skill-Link',
+    image: '/images/projects/skilllink-home.png',
+    imageAlt: 'SkillLink homepage: “Find trusted professionals near you”, with a service search box and a smiling tradesman holding a drill',
+    stack: ['React', 'Vite', 'React Query', 'Node.js', 'Express', 'Socket.IO', 'MongoDB Atlas', 'Google Gemini', 'ElevenLabs', 'Cloudinary'],
+    summary: 'A marketplace connecting customers in The Gambia with verified local professionals — with AI-assisted job posting, private real-time chat and protected payments.',
+    role: 'SkillLink is my final-year project at the University of The Gambia, supervised by Mr. Abdourahman Balde. I designed and built the full product: the React web app, the Node.js and Express API with real-time chat, the booking and payment logic, and three AI features.',
+    sections: [
+      { title: 'The problem', text: 'Finding a reliable plumber, electrician or carpenter still depends on word of mouth. Customers cannot check identity, past work or honest reviews, prices are negotiated blind, and cash paid up front protects neither side. Good workers without a network stay invisible.' },
+      { title: 'How it works', text: 'A customer describes the job in a few words, a photo or a voice note, and AI turns it into a clear request. Matched, verified workers send offers, ranked by distance, rating and reliability. The customer books a time and pays; the money is held by SkillLink until the customer confirms the job is done, then released, and a review is left.' },
+      { title: 'AI that removes the hardest steps', text: 'Google Gemini writes the job request and suggests a price range from real SkillLink bookings. An explainable ranking scores workers on six weighted factors and shows why each one is recommended. ElevenLabs transcribes chat voice notes in English, Wolof and French. No phone numbers or emails are ever sent to AI services.' },
+      { title: 'Trust and security', text: 'Short-lived JWTs with rotating refresh tokens and role-based access for customers, workers and admins. Phone numbers are blocked in chat, offers and voice transcripts until a booking is paid, so nobody can go around the platform. Money is stored as integer bututs with database transactions, idempotent payments and a double-entry ledger. Admins verify workers and resolve disputes.' },
+      { title: 'Testing and status', text: 'More than 565 automated backend tests and 114 frontend tests cover the API, security, payments, AI and user flows — for example, two customers can never book the same slot and a payment is never charged twice. SkillLink is live; mobile-money payments currently run in Modem Pay test mode, and live payments, SMS alerts and a pilot with real workers are next.' },
     ],
-    "summary": "A collaborative car rental website for exploring electric vehicles. I co-designed and implemented responsive page layouts and styling in HTML and CSS, collaborating through Git and GitHub.",
-    "role": "Co-designed and built the interface with a fellow student developer, contributing to page layout, styling, and overall page structure.",
-    "sections": [
-      {
-        "title": "My contribution",
-        "text": "I contributed to the responsive interface, page layout, styling, and overall structure of this collaborative student project."
-      },
-      {
-        "title": "Working together",
-        "text": "We used Git and GitHub for version control while collaborating on the interface."
-      }
-    ],
-    "note": "Detailed user flows, design iterations, and project feedback have not yet been documented."
+    features: ['AI job description assistant', 'Explainable worker ranking', 'Real-time chat with voice notes and transcripts', 'Price offers that turn into bookings', 'Protected payments held until confirmation', 'Verified worker profiles and portfolios', 'Location, service areas and availability', 'Admin verification, disputes and audit trail'],
   },
   {
-    "slug": "floodwatch-gambia",
-    "name": "FloodWatch Gambia",
-    "team": "Beyond Syntax",
-    "achievement": "2nd Runner-Up — ITCA Hackathon",
-    "category": "Community flood reporting platform",
-    "number": "03",
-    "live": "https://floodwatch-gambia.vercel.app/",
-    "image": "/images/floodwatch-gambia.png",
-    "featured": true,
-    "stack": [],
-    "summary": "A community-driven flood reporting platform where citizens can submit flood reports and administrators can review and verify incidents.",
-    "role": "Developed with my team, Beyond Syntax, during the ITCA Hackathon, where we finished as 2nd Runner-Up. This was a team achievement; individual technical contributions have not yet been documented here.",
-    "sections": [
-      {
-        "title": "Implemented interface",
-        "text": "The deployed homepage presents a flood map, recent community reports, a report-flooding action, and safety guidance. Individual technical contributions and the underlying stack still need documentation."
-      }
+    slug: 'floodwatch-gambia',
+    name: 'FloodWatch Gambia',
+    team: 'Beyond Syntax',
+    achievement: '2nd Runner-Up — ITCA Hackathon',
+    category: 'Community flood reporting platform',
+    number: '03',
+    featured: true,
+    live: 'https://floodwatch-gambia.vercel.app/',
+    code: 'https://github.com/MadiCeesay/Floodwatch-gambia',
+    image: '/images/floodwatch-gambia.png',
+    stack: ['React', 'React Router', 'Leaflet', 'Node.js', 'Express', 'MongoDB', 'Cloudinary', 'JWT'],
+    summary: 'A community flood reporting platform where residents report flooding on a live map and administrators review and verify incidents.',
+    role: 'Built with my team, Beyond Syntax, during the ITCA Hackathon, where we placed 2nd Runner-Up.',
+    sections: [
+      { title: 'The problem', text: 'During the rainy season, information about flooded areas in The Gambia is scattered across social media and word of mouth, making it hard for residents to avoid danger and for responders to see where help is needed.' },
+      { title: 'The platform', text: 'Residents submit flood reports with photos and a location, which appear on an interactive Leaflet map alongside recent community reports and safety guidance. Administrators review and verify incidents so the map stays reliable. The backend is a Node.js and Express API with MongoDB, JWT authentication and Cloudinary for images.' },
     ],
-    "note": "Design process, contribution, technology stack, and implementation details need confirmation."
   },
   {
-    "slug": "lifelink",
-    "name": "LifeLink",
-    "category": "Blood Donation Coordination Mobile Application",
-    "summary": "A mobile application in development to help healthcare facilities coordinate with available blood donors in The Gambia.",
-    "status": "In Development",
-    "presentation": "mobile",
-    "image": "/images/projects/lifelink-homepage.png",
-    "imageAlt": "LifeLink mobile homepage with a donor registration button and a message about connecting donors when every minute matters",
-    "stack": [],
-    "sections": [
-      { "title": "Project overview", "text": "LifeLink aims to connect approved healthcare facilities with potentially compatible, available, and geographically relevant blood donors. Its focus is organized coordination, donor privacy, and keeping medical decisions under healthcare professionals’ supervision." },
-      { "title": "The problem", "text": "Families often turn to WhatsApp messages, phone calls, and social media to find emergency blood donors. These fragmented channels can make it difficult for healthcare facilities to reach suitable donors and for donors to receive relevant requests." },
-      { "title": "The solution", "text": "The planned platform would let approved healthcare facilities create donation requests and privately notify potentially relevant donors using blood group, location, and availability information. Donors would choose whether to respond. Healthcare professionals remain responsible for screening, actual eligibility, compatibility, and medical suitability; the application does not guarantee a match." },
-      { "title": "A request in practice", "text": "A healthcare facility needs a particular blood group. In the planned workflow, authorized staff create a request, potentially relevant donors nearby receive private notifications, and interested donors respond so staff can coordinate the next steps." }
+    slug: 'amc-gambia',
+    name: 'AMC Gambia',
+    category: 'Real estate platform',
+    number: '04',
+    featured: true,
+    live: 'https://amc-gambia.vercel.app/',
+    code: 'https://github.com/MadiCeesay/real_estate-project',
+    image: '/images/amc-gambia.png',
+    stack: ['React', 'Redux Toolkit', 'React Router', 'Node.js', 'Express', 'MongoDB', 'Cloudinary', 'JWT'],
+    summary: 'A MERN real estate platform where people browse properties for sale or rent by location, type and price, with image-led listings and separate admin and user experiences.',
+    role: 'I designed and built this full-stack real estate platform: property search and filtering, listing detail pages, role-based dashboards for admins and users, authentication and image uploads.',
+    sections: [
+      { title: 'The interface', text: 'Search and buy/rent filters sit alongside image-rich listings, with a clear path from browsing to a property’s details.' },
+      { title: 'Design and implementation', text: 'Responsive React layouts with Redux Toolkit for state, an admin dashboard for managing listings, role-based views, sign-in with JWT, and image uploads through Cloudinary, backed by a Node.js, Express and MongoDB API.' },
     ],
-    "features": ["Donor registration and authentication", "Donor availability management", "Consent-based location sharing", "Healthcare facility accounts and approval workflows", "Blood donation requests", "Potential donor matching", "Private donor notifications", "Donor responses", "Donation coordination and tracking", "Privacy-focused access controls"],
-    "statusDescription": "LifeLink is under development and is not publicly deployed. The features listed here describe the planned product scope, rather than a claim that every workflow is complete."
   },
   {
-    "slug": "fincore",
-    "name": "FinCore Micro-Banking Platform",
-    "category": "Banking backend · CPS 314 course project",
-    "summary": "A containerised banking backend with a REST API, structured JSON error responses, and concurrent transaction processing, built with Java, Spring Boot, PostgreSQL, Docker, and Python/Flask.",
-    "stack": ["Java", "Spring Boot", "PostgreSQL", "Docker", "Python / Flask"],
-    "role": "Built a containerised banking backend as a CPS 314 course project, implementing a REST API, structured JSON error responses, and concurrent transaction processing.",
-    "sections": [
-      { "title": "Backend implementation", "text": "The project implements banking functionality through a REST API, with structured JSON error responses and concurrent transaction processing." },
-      { "title": "Technology stack", "text": "The CV lists Java, Spring Boot, PostgreSQL, Docker, and Python/Flask for this course project. The backend is containerised." }
+    slug: 'fincore',
+    name: 'FinCore Micro-Banking Platform',
+    category: 'Banking backend · CPS 314 course project',
+    code: 'https://github.com/MadiCeesay/FinCore',
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Python / Flask'],
+    summary: 'A containerised banking backend with a REST API, structured JSON error responses and concurrent transaction processing.',
+    role: 'Built as a CPS 314 course project: a containerised banking backend with a REST API, structured JSON error responses and safe concurrent transaction processing.',
+    sections: [
+      { title: 'Backend implementation', text: 'Banking operations are exposed through a Spring Boot REST API backed by PostgreSQL, with structured JSON errors and concurrent transaction processing. A Python/Flask service provides analytics, and the whole system runs in Docker.' },
     ],
-    "note": "A project-specific repository URL, deployment details, screenshots, and testing documentation have not yet been supplied."
   },
   {
-    "slug": "skilllink",
-    "name": "SkillLink",
-    "category": "Local Services Marketplace",
-    "summary": "A local services marketplace in development, connecting people with skilled professionals for everyday jobs.",
-    "status": "In Development",
-    "presentation": "web",
-    "image": "/images/projects/skilllink-homepage.png",
-    "imageAlt": "SkillLink homepage with professional discovery, a service search field, and a local tradesperson holding a drill",
-    "stack": [],
-    "sections": [
-      { "title": "Project overview", "text": "SkillLink is a digital marketplace being developed to connect customers with local electricians, plumbers, carpenters, cleaners, and tailors. It aims to help customers discover professionals and coordinate service requests while giving skilled workers a way to reach new customers." },
-      { "title": "The problem", "text": "Finding a reliable professional often depends on word of mouth. Customers may struggle to compare prices, assess previous work, and communicate what they need. Skilled workers can also find it difficult to reach new customers and secure consistent work." },
-      { "title": "The solution", "text": "The planned marketplace brings discovery, service requests, and job coordination into one place. Customers would describe a job, attach images, compare quotations and professional profiles, and choose a provider. Booking, messaging, reviews, and a simulated payment workflow form part of the planned scope." },
-      { "title": "A job in practice", "text": "A customer needs a damaged wardrobe repaired. In the planned workflow, they describe the problem and upload photos. Carpenters submit quotations, the customer compares profiles, previous work, feedback, and prices, and both parties coordinate the job through the platform." }
+    slug: 'car-rental-system',
+    name: 'Car Rental System',
+    category: 'Car rental web interface',
+    live: 'https://car-rental-system-eosin.vercel.app/',
+    code: 'https://github.com/MadiCeesay/Car-rental-system',
+    image: '/images/car-rental-system.png',
+    stack: ['HTML', 'CSS'],
+    summary: 'A collaborative car rental website for exploring electric vehicles, with responsive layouts built in HTML and CSS.',
+    role: 'Co-designed and built the interface with a fellow student developer, contributing page layout, styling and overall page structure, and collaborating through Git and GitHub.',
+    sections: [
+      { title: 'My contribution', text: 'I contributed to the responsive interface, page layout, styling and overall structure of this collaborative student project, using Git and GitHub for version control.' },
     ],
-    "features": ["Customer and professional accounts", "Professional discovery", "Service requests and image attachments", "Professional profiles and portfolios", "Service quotations", "Direct hiring and booking", "Customer-provider messaging", "Job status coordination", "Customer reviews", "Mock / simulated payment workflow — no live payment integration"],
-    "statusDescription": "SkillLink is under development and is not publicly deployed. The features listed here describe the planned product scope, rather than a claim that every workflow is complete."
-  }
+  },
 ]

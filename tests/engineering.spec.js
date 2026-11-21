@@ -13,7 +13,7 @@ test('engineering positioning, navigation and contact assets', async ({ page, re
   await expect(page.locator('#about')).toContainText('University of The Gambia')
   await expect(page.locator('#about h2')).toHaveText('Real problems.Thoughtful solutions.')
   await expect(page.locator('#about')).not.toContainText('3.69')
-  await expect(page.locator('.skill h3')).toHaveText(['Backend Development', 'Frontend Development', 'Databases', 'Programming Languages', 'Testing', 'Tools and Deployment'])
+  await expect(page.locator('.skill h3')).toHaveText(['Backend Development', 'Frontend & Mobile', 'Databases', 'Programming Languages', 'Testing & AI', 'Tools and Deployment'])
   for (const nav of ['#main-navigation', 'footer nav']) {
     const links = page.locator(`${nav} a`)
     for (let i = 0; i < await links.count(); i++) {

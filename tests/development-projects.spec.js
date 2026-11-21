@@ -1,25 +1,24 @@
 import { test, expect } from '@playwright/test'
 import { projects } from '../src/data/projects.js'
 
-test('development project overviews and existing project links', async ({ page }) => {
+test('live project pages show real screenshots, live and code links', async ({ page }) => {
   test.setTimeout(90000)
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const slug of ['skilllink', 'lifelink']) {
+  for (const slug of ['lifelink', 'skilllink']) {
     const project = projects.find(item => item.slug === slug)
     await page.goto(`/projects/${slug}`)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(project.name)
-    await expect(page.getByText('Documentation in progress')).toHaveCount(0)
-    await expect(page.getByRole('link', { name: 'Visit Live Website' })).toHaveCount(0)
-    await expect(page.getByRole('heading', { name: 'Planned key features' })).toBeVisible()
-    await expect(page.locator('.planned-features li')).toHaveCount(10)
-    await expect(page.locator('.overview-visual')).toHaveClass(new RegExp(`overview-visual-${project.presentation}`))
-    const screenshot = page.locator('.overview-image-frame img')
+    await expect(page.locator('.live-badge')).toHaveText('Live')
+    await expect(page.getByText(/in development|not publicly deployed|documentation in progress/i)).toHaveCount(0)
+    await expect(page.getByRole('link', { name: /Open the App|Visit Live Website/ })).toHaveAttribute('href', project.live)
+    await expect(page.getByRole('link', { name: 'View Code' })).toHaveAttribute('href', project.code)
+    await expect(page.getByRole('heading', { name: 'Key features' })).toBeVisible()
+    await expect(page.locator('.planned-features li')).toHaveCount(project.features.length)
+    const screenshot = page.locator('.case-study > .project-image img')
     await expect(screenshot).toHaveAttribute('src', project.image)
     await expect.poll(() => screenshot.evaluate(image => image.naturalWidth)).toBeGreaterThan(0)
-    await expect(page.locator('.overview-image-pending')).toHaveCount(0)
-    await expect(page.locator('.project-status')).toContainText('not publicly deployed')
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 1000 })
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
@@ -28,12 +27,14 @@ test('development project overviews and existing project links', async ({ page }
     await page.getByRole('link', { name: 'Back to selected work' }).click()
     await expect(page).toHaveURL(/#work$/)
   }
+  // Featured projects come first, in order, and every project page is reachable from the home page.
+  await page.goto('/')
+  const featured = projects.filter(p => p.featured).map(p => p.name)
+  await expect(page.locator('.project-card h3')).toHaveText(featured)
   for (const project of projects) {
-    const card = page.locator(`a[href="/projects/${project.slug}"]`).first()
-    await card.click()
+    await page.goto('/')
+    await page.locator(`a[href="/projects/${project.slug}"]`).first().click()
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(project.name)
-    if (project.live) await expect(page.getByRole('link', { name: 'Visit Live Website' })).toHaveAttribute('href', project.live)
-    await page.getByRole('link', { name: 'Back to selected work' }).click()
   }
   expect(errors).toEqual([])
 })
